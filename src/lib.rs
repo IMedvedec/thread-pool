@@ -29,4 +29,10 @@ mod tests {
     fn new_panic() {
         ThreadPool::new(0);
     }
+
+    #[test]
+    fn execute_one_success() {
+        let tp = ThreadPool::new(1);
+        tp.execute(|| println!("Hello world!"))
+    }
 }
