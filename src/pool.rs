@@ -11,12 +11,12 @@ struct Worker {
     thread: Option<thread::JoinHandle<()>>,
 }
 
-type Job = Box<FnBox + Send + 'static>;
-
 enum Message {
     NewJob(Job),
     Terminate,
 }
+
+type Job = Box<dyn FnBox + Send + 'static>;
 
 trait FnBox {
     fn call_box(self: Box<Self>);
